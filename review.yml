@@ -1,0 +1,328 @@
+aid: douglas-elliman
+name: Douglas Elliman
+review:
+  question: >-
+    Does Douglas Elliman publish a reachable public developer API surface, and what is
+    its RESO posture as a US residential brokerage?
+  answer: false
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  homeMarket: United States
+  tier: brokerage
+  primaryDomain: elliman.com
+
+sectorPosture:
+  resoPosture:
+    summary: >-
+      RESO MEMBER, NOT RESO CERTIFIED. "Douglas Elliman Real Estate" appears on the RESO
+      membership roster under Class D Members (Brokers, Agents and Appraisers). It does
+      NOT appear anywhere in the RESO certified-organizations directory. Membership is a
+      trade-association status; certification is a tested conformance status. The two are
+      separate, and Douglas Elliman holds only the former.
+    resoCertified: false
+    webApiCertification: none found
+    dataDictionaryCertification: none found
+    dataDictionaryVersion: n/a
+    resoCommonFormat: none found
+    upi:
+      universalPropertyIdentifierFound: false
+      note: >-
+        No RESO Universal Property Identifier (UPI) is exposed on any Douglas Elliman
+        surface. Property URLs under /sales/, /rentals/, and /sold/ are SEO slugs, not UPIs.
+    odata:
+      endpointFound: false
+      metadataDocumentFound: false
+      note: >-
+        RESO Web API is OData v4, so a $metadata document would be the machine-readable
+        contract. None was served. https://www.elliman.com/$metadata returned HTTP 404 and
+        https://api.elliman.com/$metadata returned HTTP 404.
+    directoryEvidence:
+    - url: https://www.reso.org/certificates/
+      httpStatus: 200
+      bytes: 416233
+      fetched: '2026-07-26'
+      finding: >-
+        RESO "List of Certified Organizations". Case-insensitive grep for "elliman" over
+        the full 416,233-byte response returned ZERO matches. The directory is organized by
+        MLS / Pooled Platform / Technology Company / Commercial / Brokerage tabs and is
+        dominated by MLSs. Douglas Elliman is absent from all of them.
+    - url: https://www.reso.org/membership/
+      httpStatus: 200
+      bytes: 171432
+      fetched: '2026-07-26'
+      finding: >-
+        Grep matched the literal string "Douglas Elliman Real Estate" on the RESO member
+        list, categorized under Class D Members (Brokers, Agents and Appraisers).
+    - url: https://www.reso.org/certification/
+      httpStatus: 200
+      fetched: '2026-07-26'
+      finding: >-
+        RESO currently certifies Web API Core 2.0.0, Data Dictionary 2.0, and RESO Common
+        Format. Douglas Elliman is not named on this page.
+    ownSurfaceEvidence:
+      note: >-
+        The literal token "reso" does occur in the elliman.com homepage HTML, but every
+        occurrence is a false positive from ordinary words — "Resources", "exposure",
+        "resolve" in minified bundle strings. There is no genuine RESO, RETS, IDX, or
+        OData reference anywhere in Douglas Elliman's own public web surface.
+    consumerSideEvidence:
+      repository: https://github.com/DouglasElliman/RetsConnector
+      httpStatus: 200
+      fetched: '2026-07-26'
+      finding: >-
+        The DouglasElliman GitHub organization (created 2016-10-11) has exactly ONE public
+        repository, and it is a FORK of MikeAlhayek/RetsConnector — a third-party .NET Core
+        client library for pulling listings and photos FROM a RETS server. Fork created
+        2024-09-24, last pushed 2026-03-05. This is consumer-side evidence that Douglas
+        Elliman ingests MLS data over the legacy RETS transport; it is not producer-side
+        evidence of any API Douglas Elliman exposes. No RESO Web API client, no OData
+        client, and no server code is published.
+
+  accessGate:
+    classification: none-published
+    whatADeveloperMustSignOrJoin: >-
+      Nothing is offered, so nothing can be signed. Douglas Elliman publishes no developer
+      program, no data-licence page, no IDX/VOW feed request form, no partner API page, and
+      no API terms. A third party wanting Douglas Elliman listing data does not get it from
+      Douglas Elliman — it gets it from the MLS that Douglas Elliman participates in, which
+      means joining the relevant local MLS or board, signing that MLS's IDX or VOW agreement,
+      or buying a reseller feed (Bridge, Trestle, MLS Grid, Spark). The gate exists one layer
+      upstream of this company and is not administered by it.
+    gated: true
+    selfServeSignupFound: false
+    applicationFormFound: false
+    partnerProgramFound: false
+
+  openData:
+    exists: false
+    note: >-
+      No open, unlicensed, publicly callable dataset is published. The Douglas Elliman
+      Market Reports and Research Reports (produced with Miller Samuel) are human-readable
+      PDF/HTML publications behind marketing pages, not a data API and not an open dataset.
+      Listing data displayed on elliman.com is explicitly disclaimed on the site as sourced
+      from "the property owner or public record provided by non-governmental third parties",
+      i.e. licensed third-party data, not open data.
+
+  authModel:
+    scheme: none published
+    apiKey: false
+    oauth2: false
+    openIdConnect: false
+    saml: false
+    note: >-
+      No authentication scheme is documented because no API is documented. Fetched
+      https://www.elliman.com/.well-known/openid-configuration anonymously — HTTP 404. No
+      OIDC discovery document, no token endpoint, no documented API key issuance. The agent
+      login on elliman.com is a member web login, not a developer credential path.
+
+  machineReadableContracts:
+    openapiFound: false
+    swaggerFound: false
+    odataMetadataFound: false
+    asyncapiFound: false
+    graphqlFound: false
+    postmanFound: false
+    sdksFound: false
+    webhooksFound: false
+    eventsFound: false
+    note: >-
+      Absence is the finding. Zero machine-readable API contracts of any kind were served.
+      The only machine-readable artifacts Douglas Elliman publishes are SEO XML sitemaps
+      (listings, buildings, agents, teams, leadership, featured cities, neighborhood guides,
+      articles) declared at the tail of robots.txt. XML sitemaps are crawler hints, not API
+      contracts, and were deliberately not saved as specs.
+
+findings:
+  summary: >-
+    Douglas Elliman is a built-stub: a real, large, verifiable US brokerage with a genuinely
+    empty producer-side API surface. Nothing was harvested into openapi/ because nothing real
+    exists to harvest. The interesting datum for the sector study is the inversion of the usual
+    "certified but not reachable" pattern — Douglas Elliman is not even certified. It is a
+    dues-paying RESO member that consumes MLS data over RETS (evidenced by a forked .NET RETS
+    client, its sole public repo) and exposes nothing. It confirms that in US residential real
+    estate the machine-readable contract lives at the MLS layer, not at the brokerage layer,
+    and that a top-five national brokerage can operate at ~46,000 transactions and ~$29.6B
+    annual volume while publishing zero lines of API documentation.
+  developerPortal:
+    url: ''
+    confirmed: false
+    note: >-
+      developer.elliman.com, developers.elliman.com, and docs.elliman.com each returned HTTP
+      200 — but only because a wildcard DNS/CDN catch-all redirects them to
+      https://www.elliman.com/. None is a developer portal. This is precisely the kind of
+      false 200 that must not be recorded as a confirmed portal.
+  apisListed: 0
+  specsHarvested: 0
+
+probes:
+- url: https://www.elliman.com/
+  httpStatus: 200
+  contentType: text/html
+  note: Marketing/consumer search site. Next.js front end, Cloudinary media, Osano consent.
+- url: https://elliman.com/
+  httpStatus: 200
+  note: Redirects to https://www.elliman.com/
+- url: https://developer.elliman.com/
+  httpStatus: 200
+  note: FALSE POSITIVE — wildcard catch-all redirects to https://www.elliman.com/. Not a portal.
+- url: https://developers.elliman.com/
+  httpStatus: 200
+  note: FALSE POSITIVE — wildcard catch-all redirects to https://www.elliman.com/. Not a portal.
+- url: https://docs.elliman.com/
+  httpStatus: 200
+  note: FALSE POSITIVE — wildcard catch-all redirects to https://www.elliman.com/. Not a portal.
+- url: https://api.elliman.com/
+  httpStatus: 403
+  contentType: text/html
+  server: Microsoft-IIS/10.0 (x-powered-by ASP.NET)
+  note: >-
+    Host EXISTS and is distinct from the CDN catch-all — it serves an IIS "403 - Forbidden:
+    Access is denied." page. This is a real internal API host with no public documentation and
+    no anonymous access. Recorded as evidence of a private surface, never listed as an API.
+- url: https://api.elliman.com/swagger
+  httpStatus: 404
+- url: https://api.elliman.com/swagger/index.html
+  httpStatus: 404
+- url: https://api.elliman.com/swagger/v1/swagger.json
+  httpStatus: 404
+- url: https://api.elliman.com/openapi.json
+  httpStatus: 404
+- url: https://api.elliman.com/api-docs
+  httpStatus: 404
+- url: https://api.elliman.com/api
+  httpStatus: 404
+- url: https://api.elliman.com/v1
+  httpStatus: 404
+- url: https://api.elliman.com/health
+  httpStatus: 404
+- url: https://api.elliman.com/docs
+  httpStatus: 404
+- url: https://api.elliman.com/$metadata
+  httpStatus: 404
+  note: OData/RESO metadata probe — not served.
+- url: https://www.elliman.com/developers
+  httpStatus: 404
+- url: https://www.elliman.com/developer
+  httpStatus: 404
+- url: https://www.elliman.com/api
+  httpStatus: 404
+- url: https://www.elliman.com/docs
+  httpStatus: 404
+- url: https://www.elliman.com/openapi.json
+  httpStatus: 404
+- url: https://www.elliman.com/swagger.json
+  httpStatus: 404
+- url: https://www.elliman.com/api-docs
+  httpStatus: 404
+- url: https://www.elliman.com/$metadata
+  httpStatus: 404
+- url: https://www.elliman.com/graphql
+  httpStatus: 404
+- url: https://www.elliman.com/api/graphql
+  httpStatus: 404
+- url: https://www.elliman.com/api/health
+  httpStatus: 404
+- url: https://www.elliman.com/idx
+  httpStatus: 404
+- url: https://www.elliman.com/.well-known/openid-configuration
+  httpStatus: 404
+  note: Fetched anonymously. No OIDC discovery document.
+- url: https://www.elliman.com/.well-known/security.txt
+  httpStatus: 404
+- url: https://www.elliman.com/security.txt
+  httpStatus: 404
+- url: https://www.elliman.com/robots.txt
+  httpStatus: 200
+  note: >-
+    Allows /sales/*, /rentals/*, /sold/*; disallows every faceted-search query parameter.
+    Declares 12 XML sitemap indexes (listings/new-sales, rentals, sales, buildings/sales,
+    buildings/rentals, agents, team, leadership, featured-cities, neighborhood-guides,
+    woe-articles, insider-articles). No API paths referenced.
+- url: https://www.elliman.com/sitemap.xml
+  httpStatus: 404
+  note: Root sitemap absent; sitemaps live under /sitemaps/*/index.xml per robots.txt.
+- url: https://www.elliman.com/about-us
+  httpStatus: 200
+- url: https://www.elliman.com/terms-of-service
+  httpStatus: 200
+- url: https://www.elliman.com/privacy-policy
+  httpStatus: 200
+- url: https://www.elliman.com/site-map
+  httpStatus: 200
+- url: https://www.elliman.com/press-news
+  httpStatus: 200
+- url: https://www.elliman.com/careers
+  httpStatus: 200
+- url: https://www.elliman.com/corporate-resources/market-reports
+  httpStatus: 200
+  note: Reached via /marketreports redirect. Human-readable market reports, no data API.
+- url: https://www.elliman.com/corporate-resources/research-reports
+  httpStatus: 200
+- url: https://www.elliman.com/new-development
+  httpStatus: 200
+- url: https://www.elliman.com/commercial
+  httpStatus: 200
+- url: https://www.elliman.com/sellers-buyers-renters-guides
+  httpStatus: 200
+- url: https://investors.elliman.com/
+  httpStatus: 403
+  note: >-
+    HTTP 403 to a scripted curl (bot protection) but renders for a browser-class fetch. Real
+    IR site for Douglas Elliman Inc., NYSE: DOUG, 575 Madison Avenue, New York, NY 10022.
+    Confirms segments — residential brokerage, development marketing, property management,
+    title and escrow, PropTech investment via New Valley Ventures. No API mention.
+- url: https://github.com/DouglasElliman
+  httpStatus: 200
+  note: >-
+    Org "Douglas Elliman Real Estate", created 2016-10-11, 1 public repo, blog elliman.com.
+- url: https://api.github.com/repos/DouglasElliman/RetsConnector
+  httpStatus: 200
+  note: >-
+    Sole public repo. Fork of MikeAlhayek/RetsConnector (.NET Core RETS client). Fork created
+    2024-09-24, pushed 2026-03-05, 0 stars, no license.
+- url: https://www.detitle.com/
+  httpStatus: 200
+  note: >-
+    Douglas Elliman Title link from elliman.com now redirects to lincolnlandservices.com.
+    No API surface. Recorded but not listed.
+- url: https://www.farmandranch.elliman.com/
+  httpStatus: 200
+  note: Farm & Ranch vertical microsite. No API surface.
+- url: https://www.reso.org/certificates/
+  httpStatus: 200
+- url: https://www.reso.org/membership/
+  httpStatus: 200
+- url: https://www.reso.org/certification/
+  httpStatus: 200
+
+sources:
+- url: https://www.elliman.com/about-us
+  type: About
+  note: >-
+    Company scale and structure — ~$39.8B in sales, $25B in new development, ~6K agents in key
+    luxury markets; CEO Michael S. Liebowitz; markets CA, CO, CT, FL, MA, Mid-Atlantic, NV, NJ,
+    NY, NYC, TX, VT, France, Monaco; brand portfolio includes New Development, Commercial,
+    Relocation, Sports & Entertainment, Farm & Ranch, Title Services, Elliman Yachts.
+- url: https://investors.elliman.com/
+  type: InvestorRelations
+  note: NYSE DOUG; founded 1911; ~46,000 annual sales and rental transactions; ~$29.6B volume.
+- url: https://www.reso.org/membership/
+  type: Standards
+  note: Douglas Elliman Real Estate listed as a RESO Class D member (Brokers, Agents, Appraisers).
+- url: https://www.reso.org/certificates/
+  type: Standards
+  note: RESO certified-organizations directory — Douglas Elliman absent (0 matches in 416KB).
+- url: https://github.com/DouglasElliman/RetsConnector
+  type: SourceCode
+  note: Forked third-party .NET RETS client; consumer-side MLS ingest evidence only.
+
+actions:
+  apisYmlCreated: true
+  apisListed: 0
+  openapiDirectoryCreated: false
+  specsSaved: 0
+  reason: >-
+    apis[] is deliberately empty and openapi/ is deliberately omitted. Douglas Elliman publishes
+    no documented API and serves no machine-readable contract. Recording the private 403 host at
+    api.elliman.com or the site's undocumented internal XHR calls as APIs would be fabrication.
+    Absence is recorded as the finding.
