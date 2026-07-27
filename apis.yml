@@ -61,6 +61,8 @@ modified: '2026-07-26'
 specificationVersion: '0.19'
 apis: []
 common:
+- type: DomainSecurity
+  url: security/douglas-elliman-domain-security.yml
 - type: Website
   url: https://www.elliman.com/
 - type: About
@@ -81,8 +83,21 @@ common:
   url: https://www.elliman.com/corporate-resources/market-reports
 - type: Research
   url: https://www.elliman.com/corporate-resources/research-reports
-- type: Documentation
+- type: Guides
   url: https://www.elliman.com/sellers-buyers-renters-guides
+  note: >-
+    Consumer buyer/seller/renter guides. Retyped from Documentation in the 2026-07-26
+    enrichment round — these are not API documentation and Douglas Elliman publishes none.
+- type: Blog
+  url: https://www.elliman.com/insider
+- type: Contact
+  url: https://www.elliman.com/offices
+- type: Conformance
+  url: conformance/douglas-elliman-conformance.yml
+- type: Lifecycle
+  url: lifecycle/douglas-elliman-lifecycle.yml
+- type: LLMsTxt
+  url: llms/douglas-elliman-llms.txt
 - type: GitHubOrganization
   url: https://github.com/DouglasElliman
 - type: LinkedIn

@@ -1,0 +1,35 @@
+generated: '2026-07-26'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts + known Douglas Elliman subdomains
+hosts:
+- host: www.elliman.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 23 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.elliman.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Apr  3 17:31:36 2027 GMT
+  hsts: false
+  hsts_max_age: null
+  note: >-
+    Private IIS/ASP.NET host. HTTP 403 at root, no anonymous access, no documentation.
+    Probed for transport posture only; it is not a listed API.
+- host: status.elliman.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  4 23:59:59 2026 GMT
+  hsts: false
+  hsts_max_age: null
+  note: >-
+    Self-hosted Uptime Kuma behind nginx/1.24.0 (Ubuntu). Root 302s to /dashboard
+    (login-gated); no public status page is published. See lifecycle/.
+domains:
+- domain: elliman.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,0 +1,52 @@
+generated: '2026-07-26'
+method: probed
+source: live anonymous fetches of the /.well-known/ surface on every Douglas Elliman host
+summary: >-
+  Nothing is served. Every /.well-known/ discovery document was probed anonymously on the
+  public marketing host (www.elliman.com) and on the private API host (api.elliman.com) and
+  all returned HTTP 404. There is no security.txt (RFC 9116), no OIDC discovery document, no
+  OAuth authorization-server metadata (RFC 8414), no api-catalog (RFC 9727), and no
+  ai-plugin.json. No WellKnown or SecurityTxt pointer is wired in apis.yml because there is
+  no document to point at — recorded absence, not a gap to paper over.
+found: 0
+hosts:
+- host: https://www.elliman.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://api.elliman.com
+  note: >-
+    IIS/10.0 (ASP.NET) host that answers 403 at its root. Every discovery path answered 404,
+    which means the paths are genuinely unmapped rather than blocked by the root ACL.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /llms.txt
+    status: 404
+machine_readable_alternatives:
+- kind: robots.txt
+  url: https://www.elliman.com/robots.txt
+  status: 200
+  note: >-
+    Declares 17 XML sitemap indexes (exclusive/non-exclusive sales and rentals, new sales
+    and rentals, sales, rentals, buildings, agents, team, leadership, featured cities,
+    neighborhood guides, woe-articles, insider-articles). SEO crawler hints, not API
+    contracts; deliberately not recorded as specs.

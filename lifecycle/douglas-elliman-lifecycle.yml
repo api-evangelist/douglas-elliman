@@ -1,0 +1,45 @@
+generated: '2026-07-26'
+method: probed
+source: live probes of elliman.com subdomains + review.yml probe set
+summary: >-
+  There is no API lifecycle to describe because there is no published API. No versioning
+  scheme, no deprecation or sunset policy, no SLA and no public status page. The only
+  operational-transparency artifact that exists is a self-hosted Uptime Kuma instance at
+  status.elliman.com, and it is an internal monitoring dashboard, not a published status
+  page — its entry page is the login-gated dashboard and it publishes no status page slug.
+  For that reason NO StatusPage and NO Deprecation pointer is wired in apis.yml; wiring
+  either would credit Douglas Elliman for transparency it does not offer.
+versioning:
+  scheme: none published
+  current: null
+  docs: null
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation or sunset policy is published; RFC 8594 headers cannot be observed.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  public: false
+  url: null
+  evidence:
+  - url: https://status.elliman.com/
+    status: 200
+    finding: >-
+      302 to /dashboard. Self-hosted Uptime Kuma (nginx/1.24.0 Ubuntu), title "Uptime Kuma".
+  - url: https://status.elliman.com/api/entry-page
+    status: 200
+    finding: '{"type":"entryPage","entryPage":"dashboard"} — the instance entry page is the
+      authenticated dashboard, not a status page.'
+  - url: https://status.elliman.com/api/status-page/list
+    status: 404
+    finding: '{"status":"fail","msg":"Status Page Not Found"} — no public status page is
+      configured on this instance.'
+  - url: https://status.elliman.com/metrics
+    status: 401
+    finding: Prometheus metrics endpoint exists but requires authentication.
+  - url: https://status.elliman.com/api/badge/1/status
+    status: 200
+    finding: Badge endpoint answers, but renders "N/A" — no monitor is publicly exposed.
+deprecated_operations: []

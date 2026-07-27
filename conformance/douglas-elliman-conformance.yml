@@ -1,0 +1,80 @@
+generated: '2026-07-26'
+method: probed
+source: >-
+  review.yml probe set + live re-probes of www.elliman.com / api.elliman.com, plus the RESO
+  certified-organizations directory and RESO membership roster
+summary: >-
+  Douglas Elliman conforms to no machine-readable API standard on its producer side. It is a
+  RESO trade-association member (Class D, Brokers/Agents/Appraisers) but does not appear in
+  the RESO certified-organizations directory, publishes no RESO Web API (OData v4) endpoint,
+  no $metadata document, no Data Dictionary certification and no UPI. The one standards
+  touchpoint is consumer-side: a fork of a third-party .NET RETS client, evidence that the
+  brokerage ingests MLS data over the legacy RETS transport rather than exposing anything.
+  No Compliance pointer is wired: no certification or compliance program (SOC 2, ISO 27001,
+  PCI DSS, HIPAA) is published anywhere on the elliman.com surface.
+standards:
+- id: reso-web-api
+  conforms: false
+  evidence: >-
+    Absent from https://www.reso.org/certificates/ (416,233-byte response, zero
+    case-insensitive matches for "elliman"). No Web API Core certification of any version.
+- id: reso-data-dictionary
+  conforms: false
+  evidence: No Data Dictionary certification listed in the RESO certified-organizations directory.
+- id: reso-common-format
+  conforms: false
+  evidence: Not listed among RESO Common Format certified organizations.
+- id: reso-upi
+  conforms: false
+  evidence: >-
+    No Universal Property Identifier exposed. Property URLs under /sales/, /rentals/ and
+    /sold/ are SEO slugs.
+- id: reso-membership
+  conforms: true
+  evidence: >-
+    "Douglas Elliman Real Estate" appears on https://www.reso.org/membership/ under Class D
+    Members (Brokers, Agents and Appraisers). Membership is association status, NOT tested
+    conformance.
+- id: odata-v4
+  conforms: false
+  evidence: >-
+    https://www.elliman.com/$metadata -> 404; https://api.elliman.com/$metadata -> 404;
+    https://api.elliman.com/odata/$metadata -> 404.
+- id: rets
+  conforms: consumer-side
+  evidence: >-
+    https://github.com/DouglasElliman/RetsConnector — sole public repo, a fork of
+    MikeAlhayek/RetsConnector (.NET Core RETS client). Client-side ingest, not a served
+    RETS/RESO surface.
+- id: openapi
+  conforms: false
+  evidence: >-
+    /openapi.json, /openapi.yaml, /swagger.json, /swagger/v1/swagger.json, /api-docs,
+    /v1/openapi.json, /redoc and /rapidoc all 404 on both www.elliman.com and
+    api.elliman.com.
+- id: graphql
+  conforms: false
+  evidence: >-
+    /graphql 404 on api.elliman.com; POST introspection to
+    https://www.elliman.com/api/graphql -> 404.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface published.
+- id: oauth2
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server -> 404 on both hosts.
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration -> 404 on both hosts.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No API responses are published to inspect.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt and /security.txt -> 404 on both hosts.
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog -> 404 on both hosts.
+- id: llms-txt
+  conforms: false
+  evidence: /llms.txt -> 404 on both hosts; the file in llms/ is API Evangelist-generated.
