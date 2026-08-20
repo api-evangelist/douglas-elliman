@@ -41,6 +41,22 @@ accessModel:
   method: probed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/douglas-elliman.png
 tags:
+- Real-Estate
+- United States
+- Brokerage
+- Property Listings
+- MLS
+- IDX
+- RESO
+- Rentals
+- Commercial Real Estate
+- Property Management
+- Title
+- Escrow
+- PropTech
+- Luxury Real Estate
+- New Development
+tags_raw:
 - Real Estate
 - United States
 - Brokerage
