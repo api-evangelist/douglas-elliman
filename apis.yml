@@ -52,7 +52,7 @@ accessModel:
   method: probed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/douglas-elliman.png
 tags:
-- Real-Estate
+- Real Estate
 - United States
 - Brokerage
 - Property Listings
@@ -83,6 +83,7 @@ tags_raw:
 - PropTech
 - Luxury Real Estate
 - New Development
+- Real-Estate
 created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.23'
