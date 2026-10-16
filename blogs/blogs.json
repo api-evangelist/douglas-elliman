@@ -2,6 +2,13 @@
   "repo": "douglas-elliman",
   "feeds": [
     {
+      "source": "https://www.elliman.com/insider",
+      "feed_url": "https://www.elliman.com/insider",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://www.elliman.com/sellers-buyers-renters-guides",
       "feed_url": "https://www.elliman.com/sellers-buyers-renters-guides",
       "title": "",
@@ -10,5 +17,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "fetched": "2026-10-10T13:15:00Z"
 }
