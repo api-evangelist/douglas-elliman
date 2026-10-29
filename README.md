@@ -1,4 +1,4 @@
-# Douglas Elliman (douglas-elliman)
+# Douglas Elliman
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,93 +64,83 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Douglas Elliman Inc. (NYSE: DOUG) is a residential real estate brokerage founded in 1911 and headquartered at 575 Madison Avenue, New York City. It is one of the largest brokerages in the New York metropolitan area and among the largest in the United States, with roughly 6,000 agents across New York, Florida, California, Texas, Colorado, Massachusetts, Connecticut, Nevada, New Jersey, Vermont, the Mid-Atlantic, and international outposts in France and Monaco. Its home market is the United States. In the value chain Douglas Elliman sits on the SELL side as a licensed brokerage and MLS participant — it consumes MLS listing data under IDX and broker agreements rather than originating a syndicated feed — and it extends into development marketing, property management, commercial brokerage, title and escrow (Douglas Elliman Title), relocation, and PropTech venture investment through New Valley Ventures. Its API posture is honest and thin: no developer portal, no published API documentation, no OpenAPI or OData `$metadata` contract, and no published access path of any kind.
+Douglas Elliman Inc. (NYSE: DOUG) is a residential real estate brokerage founded in 1911 and headquartered at 575 Madison Avenue, New York City. It is one of the largest brokerages in the New York metropolitan area and among the largest in the United States, with roughly 6,000 agents across New York, Florida, California, Texas, Colorado, Massachusetts, Connecticut, Nevada, New Jersey, Vermont, the Mid-Atlantic, and international outposts in France and Monaco. Its home market is the United States. In the value chain Douglas Elliman sits on the SELL side as a licensed brokerage and MLS participant — it consumes MLS listing data under IDX and broker agreements rather than originating a syndicated feed — and it extends into development marketing, property management, commercial brokerage, title and escrow (Douglas Elliman Title), relocation, and PropTech venture investment through New Valley Ventures. Its API posture is honest and thin: no developer portal, no published API documentation, no OpenAPI or OData $metadata contract, and no published access path of any kind. developer.elliman.com, developers.elliman.com, and docs.elliman.com all resolve to the marketing homepage via a wildcard catch-all rather than to a portal, and api.elliman.com exists as an IIS/ASP.NET host that returns HTTP 403 at its root with no documentation behind it. On RESO, Douglas Elliman Real Estate is listed as a Class D member (Brokers, Agents and Appraisers) on the RESO membership roster but does NOT appear in the RESO certified-organizations directory — it is a RESO member, not a RESO-certified data provider, and it publishes no Web API or Data Dictionary certification, no OData endpoint, and no UPI surface. The single public engineering artifact the company ships is a GitHub fork of a third-party .NET RETS client library, which is consumer-side evidence that Elliman pulls MLS data in rather than producer-side evidence that it exposes any.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/douglas-elliman/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/douglas-elliman/refs/heads/main/apis.yml)
+**Areas:** Real Estate · United States · Brokerage · Property Listings · MLS · IDX · RESO · Rentals · Commercial Real Estate · Property Management · Title · Escrow
 
-## Tags
+## Douglas Elliman on APIs.io
 
-- Real Estate
-- United States
-- Brokerage
-- Property Listings
-- MLS
-- IDX
-- RESO
-- Rentals
-- Commercial Real Estate
-- Property Management
-- Title
-- Escrow
-- PropTech
-- Luxury Real Estate
-- New Development
+Everything profiled for Douglas Elliman is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/douglas-elliman/](https://apis.io/providers/douglas-elliman/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-26
-- **Modified:** 2026-07-26
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Security (1)
 
-No public, documented APIs are published by Douglas Elliman. The `apis` collection in `apis.yml` is intentionally empty.
+Authentication, trust centre, and vulnerability disclosure.
 
-## RESO Posture
+- [Douglas Elliman Domain Security](https://apis.io/security/douglas-elliman/douglas-elliman-domain-security/)
 
-**RESO member — not RESO certified.**
+## Where to find this API
 
-- "Douglas Elliman Real Estate" appears on the [RESO membership roster](https://www.reso.org/membership/) under Class D Members (Brokers, Agents and Appraisers).
-- It does **not** appear in the [RESO certified-organizations directory](https://www.reso.org/certificates/) — a case-insensitive search of the full 416 KB response returned zero matches.
-- No RESO Web API certification, no Data Dictionary certification, no RESO Common Format, no Universal Property Identifier (UPI), and no OData `$metadata` document is served.
-- The only RESO/RETS-adjacent public artifact is a **fork** of a third-party .NET RETS client library — [`DouglasElliman/RetsConnector`](https://github.com/DouglasElliman/RetsConnector) — which is consumer-side evidence that Elliman pulls MLS data in, not producer-side evidence of anything it exposes.
-
-Membership is a trade-association status. Certification is a tested conformance status. Douglas Elliman holds only the former, and neither one would produce a reachable endpoint here.
-
-## Access Gate
-
-**`none-published`.** There is no developer program, no data-licence page, no IDX/VOW request form, no partner API page, and no API terms. A developer wanting Douglas Elliman listing data does not obtain it from Douglas Elliman — the gate sits one layer upstream at the MLS, and requires joining the relevant MLS or board, signing that MLS's IDX or VOW agreement, or buying a reseller feed (Bridge, Trestle, MLS Grid, Spark).
-
-## Open Data
-
-**None.** No open, unlicensed, publicly callable dataset exists. The Douglas Elliman Market Reports and Research Reports are human-readable publications, not data APIs.
-
-## Auth Model
-
-**None published.** `https://www.elliman.com/.well-known/openid-configuration` returned HTTP 404 when fetched anonymously. No API key issuance, no OAuth2, no OIDC discovery. The agent login is a member web login, not a developer credential path.
-
-## Notable Probes
-
-| URL | Status | Note |
-| --- | --- | --- |
-| `https://www.elliman.com/` | 200 | Consumer marketing and property search site |
-| `https://developer.elliman.com/` | 200 | **False positive** — wildcard catch-all to www, not a portal |
-| `https://developers.elliman.com/` | 200 | **False positive** — wildcard catch-all to www, not a portal |
-| `https://docs.elliman.com/` | 200 | **False positive** — wildcard catch-all to www, not a portal |
-| `https://api.elliman.com/` | 403 | Real IIS/ASP.NET host, forbidden, undocumented |
-| `https://api.elliman.com/$metadata` | 404 | No OData/RESO metadata |
-| `https://www.elliman.com/openapi.json` | 404 | No OpenAPI |
-| `https://www.elliman.com/swagger.json` | 404 | No Swagger |
-| `https://www.elliman.com/.well-known/openid-configuration` | 404 | No OIDC discovery |
-| `https://www.elliman.com/robots.txt` | 200 | 12 XML sitemap indexes; no API paths |
-
-Full probe log, with HTTP status for every URL, is recorded in [`review.yml`](review.yml).
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.elliman.com/)
-- [About](https://www.elliman.com/about-us)
-- [Investor Relations](https://investors.elliman.com/)
-- [Terms of Service](https://www.elliman.com/terms-of-service)
-- [Privacy Policy](https://www.elliman.com/privacy-policy)
-- [Site Map](https://www.elliman.com/site-map)
-- [Press](https://www.elliman.com/press-news)
-- [Careers](https://www.elliman.com/careers)
-- [Market Reports](https://www.elliman.com/corporate-resources/market-reports)
-- [Research Reports](https://www.elliman.com/corporate-resources/research-reports)
-- [Guides](https://www.elliman.com/sellers-buyers-renters-guides)
-- [GitHub Organization](https://github.com/DouglasElliman)
-- [LinkedIn](https://www.linkedin.com/company/douglaselliman/)
+- [Blog](https://www.elliman.com/insider)
+- [Terms of service](https://www.elliman.com/terms-of-service)
+- [Privacy policy](https://www.elliman.com/privacy-policy)
+- [GitHub](https://github.com/DouglasElliman)
 
-## Maintainers
+## API Evangelist rating
 
-- Kin Lane — kin@apievangelist.com
+**Kin Score 11.7** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 49.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 2.4 |
+| Access clarity | 21.1 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/douglas-elliman/](https://apis.io/providers/douglas-elliman/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Douglas Elliman: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/douglas-elliman/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
